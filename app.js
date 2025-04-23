@@ -52,7 +52,9 @@ app.get("/callback", async (req, res) => {
     const { access_token, refresh_token } = response.data;
 
     // ✅ Gib die Tokens zurück an dein Frontend
-    res.json({ access_token, refresh_token });
+    res.redirect(
+      `https://colorful-music-app.netlify.app/callback?access_token=${access_token}&refresh_token=${refresh_token}`
+    );
   } catch (error) {
     console.error("Fehler beim Token-Austausch:", error.response.data);
     res.status(500).json({ error: "Token-Austausch fehlgeschlagen" });
